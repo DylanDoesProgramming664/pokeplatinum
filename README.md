@@ -1,3 +1,6 @@
+[![build](https://github.com/DylanDoesProgramming664/pokeplatinum/actions/workflows/build.yml/badge.svg)](https://github.com/DylanDoesProgramming664/pokeplatinum/actions/workflows/build.yml)
+
+
 # Pokémon Platinum
 
 This is a WIP decompilation of Pokémon Platinum. For instructions on how to set up the repository, please read [INSTALL.md](INSTALL.md).
