@@ -85,7 +85,8 @@ typedef struct UnkStruct_ov6_02248FF0 {
     const u8 *forms;
 } UnkStruct_ov6_02248FF0;
 
-static BOOL ov6_022417C8(FieldSystem *fieldSystem, const u32 param1, const u8 param2);
+static BOOL
+ov6_022417C8(FieldSystem *fieldSystem, const u32 param1, const u8 param2);
 static u8 ov6_02241874(FieldSystem *fieldSystem, u8 param1, u8 *encounterType);
 static BOOL ov6_022418B4(FieldSystem *fieldSystem, u32 param1);
 static BOOL ov6_022418DC(FieldSystem *fieldSystem, u32 param1);
