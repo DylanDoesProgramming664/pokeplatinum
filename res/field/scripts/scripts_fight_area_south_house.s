@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/fight_area_south_house.h"
 
     .data
 
@@ -6,7 +7,7 @@
     ScriptEntry _0025
     ScriptEntry _0038
     ScriptEntry _0057
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     PlayFanfare SEQ_SE_CONFIRM

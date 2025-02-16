@@ -14,7 +14,6 @@
 #include "struct_defs/struct_0202FD30.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_02078B40.h"
-#include "struct_defs/struct_party.h"
 
 #include "savedata/save_table.h"
 
@@ -28,9 +27,9 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "system.h"
 #include "trainer_info.h"
 #include "unk_02006224.h"
-#include "unk_02017728.h"
 #include "unk_02026150.h"
 
 BattleRecording *Unk_021C07A4 = NULL;

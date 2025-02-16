@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/battle_frontier_gate_to_fight_area.h"
 
     .data
 
@@ -14,7 +15,7 @@
     ScriptEntry _037E
     ScriptEntry _0391
     ScriptEntry _0032
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0032:
     SetFlag 0x9E5
@@ -111,7 +112,7 @@ _0154:
     LockAll
     FacePlayer
     Message 17
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _017F
     GoToIfEq 0x800C, 1, _018A
     End
@@ -137,7 +138,7 @@ _019D:
     LockAll
     FacePlayer
     Message 20
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _01C8
     GoToIfEq 0x800C, 1, _01D3
     End
@@ -163,7 +164,7 @@ _01E6:
     LockAll
     FacePlayer
     Message 23
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0211
     GoToIfEq 0x800C, 1, _021C
     End
@@ -189,7 +190,7 @@ _022F:
     LockAll
     FacePlayer
     Message 26
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _025A
     GoToIfEq 0x800C, 1, _0265
     End
@@ -215,7 +216,7 @@ _0278:
     LockAll
     FacePlayer
     Message 29
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _02A3
     GoToIfEq 0x800C, 1, _02AE
     End

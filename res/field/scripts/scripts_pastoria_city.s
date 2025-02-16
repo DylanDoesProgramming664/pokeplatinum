@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/pastoria_city.h"
 
     .data
 
@@ -25,7 +26,7 @@
     ScriptEntry _07F8
     ScriptEntry _0B90
     ScriptEntry _0BF0
-    .short 0xFD13
+    ScriptEntryEnd
 
 _005E:
     SetVar 0x40C7, 0
@@ -106,10 +107,10 @@ _012F:
     LockAll
     FacePlayer
     GoToIfSet 0x128, _0189
-    ScrCmd_0DE 0x800C
-    CallIfEq 0x800C, 0x183, _0194
-    CallIfEq 0x800C, 0x186, _019C
-    CallIfEq 0x800C, 0x189, _01A4
+    GetPlayerStarterSpecies 0x800C
+    CallIfEq 0x800C, SPECIES_TURTWIG, _0194
+    CallIfEq 0x800C, SPECIES_CHIMCHAR, _019C
+    CallIfEq 0x800C, SPECIES_PIPLUP, _01A4
     ScrCmd_261 0, 0x8004
     Message 37
     SetVar 0x8005, 1
@@ -235,7 +236,7 @@ _02B2:
 
 _02D2:
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 21
+    RemoveObject 21
     SetFlag 0x103
     ReleaseAll
     End
@@ -575,21 +576,21 @@ _04C8:
     CloseMessage
     ApplyMovement 26, _05CC
     WaitMovement
-    ScrCmd_0DE 0x800C
-    GoToIfEq 0x800C, 0x183, _054B
-    GoToIfEq 0x800C, 0x186, _0557
+    GetPlayerStarterSpecies 0x800C
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _054B
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0557
     GoTo _053F
 
 _053F:
-    StartTrainerBattle trainer_rival_pastoria_city_piplup
+    StartTrainerBattle TRAINER_RIVAL_PASTORIA_CITY_PIPLUP
     GoTo _0563
 
 _054B:
-    StartTrainerBattle trainer_rival_pastoria_city_turtwig
+    StartTrainerBattle TRAINER_RIVAL_PASTORIA_CITY_TURTWIG
     GoTo _0563
 
 _0557:
-    StartTrainerBattle trainer_rival_pastoria_city_chimchar
+    StartTrainerBattle TRAINER_RIVAL_PASTORIA_CITY_CHIMCHAR
     GoTo _0563
 
 _0563:
@@ -601,14 +602,14 @@ _0563:
     CloseMessage
     ApplyMovement 26, _05D4
     WaitMovement
-    ScrCmd_065 26
+    RemoveObject 26
     SetVar 0x407C, 2
     ReleaseAll
     End
 
 _0597:
     SetFlag 0x1A9
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -865,7 +866,7 @@ _08D9:
     Return
 
 _08FA:
-    ScrCmd_065 21
+    RemoveObject 21
     ClearFlag 0x20C
     ScrCmd_186 21, 0x27D, 0x32C
     ScrCmd_188 21, 17
@@ -879,7 +880,7 @@ _091C:
     ApplyMovement 27, _0B88
     ApplyMovement 0xFF, _099C
     WaitMovement
-    ScrCmd_065 27
+    RemoveObject 27
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x261, _0981
     CallIfEq 0x8004, 0x263, _098D
@@ -1165,7 +1166,7 @@ _0C22:
     ApplyMovement 28, _0C70
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 28
+    RemoveObject 28
     WaitFanfare SEQ_SE_DP_KAIDAN2
     ReleaseAll
     End

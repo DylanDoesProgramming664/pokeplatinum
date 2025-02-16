@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/floaroma_meadow.h"
 
     .data
 
@@ -9,7 +10,7 @@
     ScriptEntry _01DA
     ScriptEntry _02EF
     ScriptEntry _0306
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     SetFlag 0x9CE
@@ -18,11 +19,11 @@ _001E:
 _0024:
     LockAll
     Call _00CC
-    StartTrainerBattle trainer_galactic_grunt_floaroma_meadow_1
+    StartTrainerBattle TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_1
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _006E
     Call _00EE
-    StartTrainerBattle trainer_galactic_grunt_floaroma_meadow_2
+    StartTrainerBattle TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_2
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _006E
     Call _010E
@@ -31,7 +32,7 @@ _0024:
     End
 
 _006E:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -112,8 +113,8 @@ _010E:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 0
-    ScrCmd_065 1
+    RemoveObject 0
+    RemoveObject 1
     SetVar 0x40E9, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -122,7 +123,7 @@ _010E:
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 12, _01BA
     CallIfEq 0x8004, 13, _01C6
-    ScrCmd_065 3
+    RemoveObject 3
     Message 7
     SetVar 0x8004, 0x1B6
     SetVar 0x8005, 1
@@ -259,6 +260,6 @@ _0306:
     CallCommonScript 0x7FC
     CloseMessage
     SetFlag 159
-    ScrCmd_065 3
+    RemoveObject 3
     ReleaseAll
     End

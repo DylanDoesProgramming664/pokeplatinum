@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/species.h"
+#include "generated/species_data_params.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 
@@ -22,7 +23,6 @@
 
 #include "bg_window.h"
 #include "charcode_util.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -38,6 +38,7 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
@@ -526,7 +527,7 @@ static int ov94_0224195C(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02241990(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov94_0223C4C0(param0, 5, 5);
         param0->unk_2C = 2;
     }
@@ -640,7 +641,7 @@ static int ov94_02241BAC(UnkStruct_ov94_0223FD4C *param0)
         Window_Remove(&param0->unk_F9C[1]);
         param0->unk_B74.unk_00 = v0;
         Sound_PlayEffect(1500);
-        param0->unk_10E4->unk_20 = PokemonPersonalData_GetSpeciesValue(v0, 18);
+        param0->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(v0, SPECIES_DATA_GENDER_RATIO);
 
         if (ov94_02241B80(&param0->unk_B74, param0->unk_10E4->unk_20)) {
             param0->unk_2C = 10;
@@ -1255,7 +1256,7 @@ void ov94_02242934(UnkStruct_ov94_0223BA88_sub3 *param0, int param1, int param2)
         GF_ASSERT(param1 < (13 - 1));
     } else {
         v0 = Unk_ov94_022460AC;
-        GF_ASSERT(param1 < ((NELEMS(Unk_ov94_022460AC)) - 1));
+        GF_ASSERT(param1 < (NELEMS(Unk_ov94_022460AC) - 1));
     }
 
     param0->unk_03 = v0[param1].unk_04;

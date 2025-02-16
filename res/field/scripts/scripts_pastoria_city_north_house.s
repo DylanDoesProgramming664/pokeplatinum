@@ -1,11 +1,12 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/pastoria_city_north_house.h"
 
     .data
 
     ScriptEntry _000E
     ScriptEntry _0021
     ScriptEntry _0040
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM

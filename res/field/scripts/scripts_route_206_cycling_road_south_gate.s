@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/route_206_cycling_road_south_gate.h"
 
     .data
 
@@ -8,7 +9,7 @@
     ScriptEntry _00A0
     ScriptEntry _00B0
     ScriptEntry _001C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     End

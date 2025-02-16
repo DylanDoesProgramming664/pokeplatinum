@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/resort_area_ribbon_syndicate_2f.h"
 
     .data
 
@@ -6,7 +7,7 @@
     ScriptEntry _02E8
     ScriptEntry _02FB
     ScriptEntry _030E
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     PlayFanfare SEQ_SE_CONFIRM
@@ -18,7 +19,7 @@ _0012:
     BufferPlayerName 0
     BufferPartyMonNickname 1, 0x4000
     Message 0
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0058
     GoTo _0063
 

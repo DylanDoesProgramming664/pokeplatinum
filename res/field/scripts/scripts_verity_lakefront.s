@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/verity_lakefront.h"
 
     .data
 
@@ -6,7 +7,7 @@
     ScriptEntry _004E
     ScriptEntry _0066
     ScriptEntry _014C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     GoToIfUnset 0x13E, _002A

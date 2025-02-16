@@ -1,11 +1,12 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/floaroma_town_middle_house.h"
 
     .data
 
     ScriptEntry _000E
     ScriptEntry _0021
     ScriptEntry _00A9
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
@@ -23,7 +24,7 @@ _0021:
     FacePlayer
     GoToIfSet 131, _0094
     Message 1
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0062
     GoToIfEq 0x800C, 1, _0057
     End

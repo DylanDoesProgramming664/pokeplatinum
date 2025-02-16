@@ -1,9 +1,10 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/unk_0431.h"
 
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     LockAll
@@ -17,7 +18,7 @@ _0006:
 
 _0031:
     Message 0
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0054
     GoToIfEq 0x800C, 1, _00B2
     End
@@ -54,7 +55,7 @@ _00BA:
     BufferPartyMonNickname 0, 0x8005
     Message 3
     Message 4
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0054
     GoToIfEq 0x800C, 1, _00B2
     End

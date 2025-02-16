@@ -1,10 +1,11 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/pokemon_league_champion_room.h"
 
     .data
 
     ScriptEntry _000A
     ScriptEntry _000E
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     ScrCmd_25B
@@ -13,7 +14,7 @@ _000A:
 _000E:
     ApplyMovement 0xFF, _012C
     WaitMovement
-    ScrCmd_0EA trainer_champion_cynthia
+    ScrCmd_0EA TRAINER_CHAMPION_CYNTHIA
     CallIfUnset 0x964, _00EB
     CallIfSet 0x964, _00F0
     CloseMessage
@@ -59,24 +60,24 @@ _00F0:
     Return
 
 _00F5:
-    StartTrainerBattle trainer_champion_cynthia
+    StartTrainerBattle TRAINER_CHAMPION_CYNTHIA
     Return
 
 _00FD:
-    StartTrainerBattle trainer_champion_cynthia_rematch
+    StartTrainerBattle TRAINER_CHAMPION_CYNTHIA_REMATCH
     Return
 
 _0105:
-    CreateJournalEvent LOCATION_EVENT_BEAT_CHAMPION, trainer_champion_cynthia, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_CHAMPION, TRAINER_CHAMPION_CYNTHIA, 0, 0, 0
     Return
 
 _0113:
-    CreateJournalEvent LOCATION_EVENT_BEAT_CHAMPION, trainer_champion_cynthia_rematch, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_CHAMPION, TRAINER_CHAMPION_CYNTHIA_REMATCH, 0, 0, 0
     Return
 
 _0121:
     ClearFlag 0x98B
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

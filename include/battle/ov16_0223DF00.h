@@ -6,15 +6,12 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/pokemon_sprite.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_message.h"
@@ -32,7 +29,9 @@
 #include "game_options.h"
 #include "message.h"
 #include "palette.h"
+#include "party.h"
 #include "pokemon.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
@@ -86,8 +85,8 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSys);
 UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSys);
-SpriteRenderer *ov16_0223E010(BattleSystem *battleSys);
-SpriteGfxHandler *ov16_0223E018(BattleSystem *battleSys);
+SpriteSystem *ov16_0223E010(BattleSystem *battleSys);
+SpriteManager *ov16_0223E018(BattleSystem *battleSys);
 UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSys, int param1);
 UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSys);
 PartyGauge *ov16_0223E034(BattleSystem *battleSys, enum PartyGaugeSide param1);
@@ -151,7 +150,7 @@ PCBoxes *ov16_0223E228(BattleSystem *battleSys);
  * @param battleSys
  * @return The battle's terrain.
  */
-enum Terrain BattleSystem_Terrain(BattleSystem *battleSys);
+enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
 int ov16_0223E240(BattleSystem *battleSys);
 int BattleSystem_MapHeader(BattleSystem *battleSys);
 int BattleSystem_Partner(BattleSystem *battleSys, int param1);
@@ -192,7 +191,7 @@ u32 BattleSystem_BattleStatus(BattleSystem *battleSys);
 enum Time BattleSystem_Time(BattleSystem *battleSys);
 int ov16_0223EC04(BattleSystem *battleSys);
 u8 ov16_0223EC58(BattleSystem *battleSys, int param1, u8 param2);
-u16 ov16_0223ECC4(FieldBattleDTO *param0, int *param1, int *param2);
+u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *param0, int *param1, int *param2);
 u8 ov16_0223ED60(BattleSystem *battleSys);
 u8 ov16_0223ED6C(BattleSystem *battleSys);
 int BattleSystem_NumSafariBalls(BattleSystem *battleSys);
@@ -271,7 +270,7 @@ void BattleSystem_ShowStopPlaybackButton(BattleSystem *battleSys);
 u8 BattleSystem_RecordedChatter(BattleSystem *battleSys, int param1);
 void ov16_0223F858(BattleSystem *battleSys, u8 *param1);
 void ov16_0223F87C(BattleSystem *battleSys, u8 *param1);
-void ov16_0223F8AC(BattleSystem *battleSys, Sprite **param1);
+void ov16_0223F8AC(BattleSystem *battleSys, PokemonSprite **param1);
 void BattleSystem_SetGaugePriority(BattleSystem *battleSys, int param1);
 
 /**

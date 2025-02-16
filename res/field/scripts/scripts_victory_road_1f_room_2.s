@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/victory_road_1f_room_2.h"
 
     .data
 
@@ -6,7 +7,7 @@
     ScriptEntry _0190
     ScriptEntry _02E4
     ScriptEntry _0012
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     GoToIfUnset 230, _001F
@@ -73,7 +74,7 @@ _00EC:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x403F, 0x262
+    SetVar VAR_PARTNER_TRAINER_ID, TRAINER_MARLEY_VICTORY_ROAD
     SetHasPartner
     ScrCmd_06D 28, 48
     ReleaseAll
@@ -281,7 +282,7 @@ _0389:
     GoTo _03A1
 
 _03A1:
-    ScrCmd_065 28
+    RemoveObject 28
     SetFlag 230
     SetVar 0x4090, 2
     ReleaseAll

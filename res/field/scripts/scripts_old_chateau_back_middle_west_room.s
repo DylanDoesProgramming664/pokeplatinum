@@ -1,9 +1,10 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/old_chateau_back_middle_west_room.h"
 
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
@@ -13,7 +14,7 @@ _0006:
     GetTimeOfDay 0x800C
     GoToIfLt 0x800C, 3, _009C
     Message 1
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0096
     BufferPlayerName 0
     Message 2
@@ -50,7 +51,7 @@ _009C:
     End
 
 _00A7:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

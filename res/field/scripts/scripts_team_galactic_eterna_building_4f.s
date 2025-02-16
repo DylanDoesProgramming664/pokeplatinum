@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/team_galactic_eterna_building_4f.h"
 
     .data
 
@@ -8,7 +9,7 @@
     ScriptEntry _01B7
     ScriptEntry _01D6
     ScriptEntry _01FF
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     ScrCmd_2CD
@@ -27,14 +28,14 @@ _0022:
     WaitMovement
     Message 0
     CloseMessage
-    StartTrainerBattle trainer_commander_jupiter_team_galactic_eterna_building
+    StartTrainerBattle TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0135
     Message 1
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 0
+    RemoveObject 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     WaitTime 15, 0x800C
@@ -75,9 +76,9 @@ _00E2:
     ClearFlag 0x192
     ClearFlag 0x200
     ClearFlag 0x1FE
-    ScrCmd_065 2
-    ScrCmd_065 1
-    ScrCmd_065 3
+    RemoveObject 2
+    RemoveObject 1
+    RemoveObject 3
     SetVar 0x407A, 3
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -86,7 +87,7 @@ _00E2:
     End
 
 _0135:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

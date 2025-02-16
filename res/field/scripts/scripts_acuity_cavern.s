@@ -1,11 +1,12 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/acuity_cavern.h"
 
     .data
 
     ScriptEntry _000E
     ScriptEntry _0014
     ScriptEntry _002F
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     SetFlag 0x9E3
@@ -17,7 +18,7 @@ _0014:
 
 _0021:
     SetFlag 0x1E1
-    ScrCmd_065 0
+    RemoveObject 0
     ClearFlag 142
     End
 
@@ -47,7 +48,7 @@ _007A:
     End
 
 _0085:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

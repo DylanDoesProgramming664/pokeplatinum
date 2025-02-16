@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/unk_0380.h"
 
     .data
 
@@ -286,7 +287,7 @@
     ScriptEntry _0472
     ScriptEntry _0472
     ScriptEntry _0472
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0472:
     WaitFanfare SEQ_SE_CONFIRM

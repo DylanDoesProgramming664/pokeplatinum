@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/route_203.h"
 
     .data
 
@@ -8,7 +9,7 @@
     ScriptEntry _005B
     ScriptEntry _0070
     ScriptEntry _0085
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -89,21 +90,21 @@ _0111:
     BufferPlayerName 1
     Message 0
     CloseMessage
-    ScrCmd_0DE 0x800C
-    GoToIfEq 0x800C, 0x183, _014C
-    GoToIfEq 0x800C, 0x186, _0158
+    GetPlayerStarterSpecies 0x800C
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _014C
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0158
     GoTo _0140
 
 _0140:
-    StartTrainerBattle trainer_rival_route_203_piplup
+    StartTrainerBattle TRAINER_RIVAL_ROUTE_203_PIPLUP
     GoTo _0164
 
 _014C:
-    StartTrainerBattle trainer_rival_route_203_turtwig
+    StartTrainerBattle TRAINER_RIVAL_ROUTE_203_TURTWIG
     GoTo _0164
 
 _0158:
-    StartTrainerBattle trainer_rival_route_203_chimchar
+    StartTrainerBattle TRAINER_RIVAL_ROUTE_203_CHIMCHAR
     GoTo _0164
 
 _0164:
@@ -140,13 +141,13 @@ _01E9:
     GoTo _01F9
 
 _01F9:
-    ScrCmd_065 5
+    RemoveObject 5
     SetVar 0x4088, 1
     ReleaseAll
     End
 
 _0207:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

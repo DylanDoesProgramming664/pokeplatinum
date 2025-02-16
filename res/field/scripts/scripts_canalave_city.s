@@ -1,4 +1,6 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
+#include "res/text/bank/canalave_city.h"
 
     .data
 
@@ -27,7 +29,7 @@
     ScriptEntry _0959
     ScriptEntry _01D2
     ScriptEntry _09BC
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0066:
     SetFlag 0x1BD
@@ -91,9 +93,9 @@ _0168:
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _01CA
     CheckItem ITEM_MEMBER_CARD, 1, 0x4000
-    GoToIfEq 0x4000, 0, _01CA
-    ScrCmd_28B 0, 0x4000
-    GoToIfEq 0x4000, 0, _01CA
+    GoToIfEq 0x4000, FALSE, _01CA
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
+    GoToIfEq 0x4000, FALSE, _01CA
     GoToIfUnset 0x12C, _01CA
     SetVar 0x4000, 1
     Return
@@ -155,21 +157,21 @@ _028A:
     BufferPlayerName 1
     Message 0
     CloseMessage
-    ScrCmd_0DE 0x800C
-    GoToIfEq 0x800C, 0x183, _02EB
-    GoToIfEq 0x800C, 0x186, _02F7
+    GetPlayerStarterSpecies 0x800C
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _02EB
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _02F7
     GoTo _02DF
 
 _02DF:
-    StartTrainerBattle trainer_rival_canalave_city_piplup
+    StartTrainerBattle TRAINER_RIVAL_CANALAVE_CITY_PIPLUP
     GoTo _0303
 
 _02EB:
-    StartTrainerBattle trainer_rival_canalave_city_turtwig
+    StartTrainerBattle TRAINER_RIVAL_CANALAVE_CITY_TURTWIG
     GoTo _0303
 
 _02F7:
-    StartTrainerBattle trainer_rival_canalave_city_chimchar
+    StartTrainerBattle TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR
     GoTo _0303
 
 _0303:
@@ -180,14 +182,14 @@ _0303:
     CloseMessage
     ApplyMovement 11, _035C
     WaitMovement
-    ScrCmd_065 11
+    RemoveObject 11
     SetVar 0x4078, 1
     ReleaseAll
     End
 
 _0334:
     SetFlag 0x1B2
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -228,7 +230,7 @@ _0377:
     ApplyMovement 11, _03AC
     ApplyMovement 0xFF, _03BC
     WaitMovement
-    ScrCmd_065 11
+    RemoveObject 11
     SetVar 0x4078, 3
     SetVar 0x40B2, 1
     ReleaseAll
@@ -262,7 +264,7 @@ _03C8:
     CloseMessage
     ApplyMovement 14, _04B8
     WaitMovement
-    ScrCmd_065 14
+    RemoveObject 14
     ApplyMovement 11, _04C0
     WaitMovement
     BufferRivalName 0
@@ -270,7 +272,7 @@ _03C8:
     CloseMessage
     ApplyMovement 11, _04C8
     WaitMovement
-    ScrCmd_065 11
+    RemoveObject 11
     ApplyMovement 13, _04A0
     WaitMovement
     BufferRivalName 0
@@ -666,7 +668,7 @@ _0900:
     CheckItem ITEM_LUNAR_WING, 1, 0x800C
     GoToIfEq 0x800C, 1, _094E
     Message 31
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0938
     GoToIfEq 0x800C, 1, _0943
     End
@@ -698,7 +700,7 @@ _0959:
     CloseMessage
     ApplyMovement 16, _09AC
     WaitMovement
-    ScrCmd_065 16
+    RemoveObject 16
     ScrCmd_186 16, 45, 0x2EE
     ScrCmd_189 16, 2
     ScrCmd_188 16, 16
@@ -750,7 +752,7 @@ _09FA:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    ScrCmd_065 18
+    RemoveObject 18
     ReleaseAll
     End
 

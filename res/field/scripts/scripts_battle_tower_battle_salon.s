@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/battle_tower_battle_salon.h"
 
     .data
 
@@ -12,7 +13,7 @@
     ScriptEntry _015D
     ScriptEntry _018D
     ScriptEntry _0204
-    .short 0xFD13
+    ScriptEntryEnd
 
 _002A:
     GoToIfUnset 227, _0121
@@ -106,7 +107,7 @@ _01AC:
     FacePlayer
     BufferPlayerName 0
     Message 1
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _01D4
     Message 0
     CloseMessage
@@ -141,10 +142,10 @@ _0204:
 
 _0245:
     ScrCmd_1DE 0x4009, 0, 0x8004, 0x8005
-    ScrCmd_0DA 0, 0x8004, 0, 0
+    BufferSpeciesNameFromVar 0, 0x8004, 0, 0
     BufferMoveName 1, 0x8005
     ScrCmd_1DE 0x4009, 1, 0x8004, 0x8005
-    ScrCmd_0DA 2, 0x8004, 0, 0
+    BufferSpeciesNameFromVar 2, 0x8004, 0, 0
     BufferMoveName 3, 0x8005
     Return
 
@@ -161,7 +162,7 @@ _0275:
     ScrCmd_341 2, 0x8004, 0, 0
     BufferMoveName 3, 0x8005
     Message 6
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _02DD
 _02D2:
     Message 7
@@ -189,7 +190,7 @@ _02FE:
     Call _0245
     BufferPlayerName 4
     Message 15
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0341
 _0336:
     Message 16
@@ -217,7 +218,7 @@ _0365:
     SetVar 0x4009, 2
     Call _0245
     Message 3
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _03A5
 _039A:
     Message 4
@@ -244,7 +245,7 @@ _03C6:
     SetVar 0x4009, 3
     Call _0245
     Message 12
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0406
 _03FB:
     Message 13
@@ -271,7 +272,7 @@ _0427:
     SetVar 0x4009, 4
     Call _0245
     Message 9
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0467
 _045C:
     Message 10

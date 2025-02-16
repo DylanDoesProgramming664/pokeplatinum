@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/mt_coronet_2f.h"
 
     .data
 
@@ -6,7 +7,7 @@
     ScriptEntry _0036
     ScriptEntry _01A0
     ScriptEntry _0023
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     PlayFanfare SEQ_SE_CONFIRM

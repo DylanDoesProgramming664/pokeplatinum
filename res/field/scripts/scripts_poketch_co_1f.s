@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/poketch_co_1f.h"
 
     .data
 
@@ -7,7 +8,7 @@
     ScriptEntry _01D6
     ScriptEntry _01E9
     ScriptEntry _0016
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     ScrCmd_238 6, 0x4000

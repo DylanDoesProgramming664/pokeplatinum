@@ -1,10 +1,11 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/fullmoon_island_forest.h"
 
     .data
 
     ScriptEntry _000A
     ScriptEntry _000C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     End
@@ -23,7 +24,7 @@ _000C:
     ScrCmd_26A 0, 6, 8
     ScrCmd_062 0
     SetFlag 0x24F
-    ScrCmd_065 0
+    RemoveObject 0
     ScrCmd_21C 1
     GoToIfEq 0x4058, 3, _0074
     ClearFlag 0x452

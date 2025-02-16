@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/iron_ruins.h"
 
     .data
 
@@ -11,7 +12,7 @@
     ScriptEntry _0199
     ScriptEntry _01B4
     ScriptEntry _01CF
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0026:
     GoToIfLt 0x4069, 0x118, _0035
@@ -65,7 +66,7 @@ _00F8:
     End
 
 _0109:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

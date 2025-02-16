@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/cycle_shop.h"
 
     .data
 
@@ -7,7 +8,7 @@
     ScriptEntry _007C
     ScriptEntry _00A5
     ScriptEntry _00B6
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     PlayFanfare SEQ_SE_CONFIRM

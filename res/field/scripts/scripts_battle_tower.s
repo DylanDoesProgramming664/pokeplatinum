@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/battle_tower.h"
 
     .data
 
@@ -26,7 +27,7 @@
     ScriptEntry _0062
     ScriptEntry _00F5
     ScriptEntry _13E0
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0062:
     CallIfEq 0x40D8, 1, _00F1
@@ -297,7 +298,7 @@ _04BE:
     WaitFadeScreen
     CloseMessage
     ScrCmd_1DD 30, 0, 0
-    ScrCmd_0A1
+    ReturnToField
     ScrCmd_1DD 31, 0, 0x800C
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -561,7 +562,7 @@ _08FF:
 
 _0922:
     Message 61
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0967
     Call _049C
     GoToIfEq 0x800C, 0, _0784
@@ -587,7 +588,7 @@ _097F:
     ScrCmd_0B3 0x4000
     ScrCmd_1DD 16, 0x4001, 0x4000
     SetVar 0x4001, 0x4000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetVar 0x800C, 0x4001
@@ -609,10 +610,10 @@ _09B3:
 
 _09FB:
     Message 47
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _05EC
     Message 48
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _09FB
     SetVar 0x40D8, 2
     ScrCmd_1DD 39, 0, 0
@@ -689,7 +690,7 @@ _0B2B:
 
 _0B50:
     Message 26
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0B80
     GoTo _0B6C
     End
@@ -755,7 +756,7 @@ _0C70:
 
 _0CB4:
     Message 112
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0C70
     CloseMessage
     ScrCmd_0F2 16, 0, 0, 0x800C
@@ -775,7 +776,7 @@ _0CFE:
 
 _0D08:
     Message 112
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0C70
     CloseMessage
     ScrCmd_0F3 16, 0, 0, 0x800C
@@ -1082,7 +1083,7 @@ _1205:
     Message 56
     Call _0734
     Message 57
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0784
     Call _096F
     GoToIfNe 0x800C, 0, _0784
@@ -1168,7 +1169,7 @@ _1304:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_1D9 0x8000, 0x8001
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -1282,14 +1283,14 @@ _140A:
     CloseMessage
     ScrCmd_191
     ScrCmd_193 0x800C
-    ScrCmd_0A1
+    ReturnToField
     SetVar 0x8000, 0x800C
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _1549
     ScrCmd_198 0x8000, 0x8004
     GoToIfEq 0x8004, 0, _149C
-    ScrCmd_2EE 0x8000, 0x8001, 0x8002, 0x8003
+    JudgeStats 0x8000, 0x8001, 0x8002, 0x8003
     GoToIfLe 0x8001, 90, _14E9
     GoToIfLe 0x8001, 120, _14F4
     GoToIfLe 0x8001, 150, _14FF

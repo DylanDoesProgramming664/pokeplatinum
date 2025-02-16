@@ -1,17 +1,18 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/pokemon_league_flint_room.h"
 
     .data
 
     ScriptEntry _000A
     ScriptEntry _0138
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 178, _00D2
-    ScrCmd_0EA trainer_elite_four_flint
+    ScrCmd_0EA TRAINER_ELITE_FOUR_FLINT
     CallIfUnset 0x964, _00F0
     CallIfSet 0x964, _0104
     CloseMessage
@@ -21,7 +22,7 @@ _000A:
     GoToIfEq 0x800C, 0, _00CC
     SetFlag 178
     PlayFanfare SEQ_SE_DP_KI_GASYAN
-    ScrCmd_065 1
+    RemoveObject 1
     CallIfUnset 214, _00B0
     CallIfSet 214, _00BE
     CallIfUnset 0x964, _0109
@@ -32,23 +33,23 @@ _000A:
     End
 
 _00A0:
-    StartTrainerBattle trainer_elite_four_flint
+    StartTrainerBattle TRAINER_ELITE_FOUR_FLINT
     Return
 
 _00A8:
-    StartTrainerBattle trainer_elite_four_flint_rematch
+    StartTrainerBattle TRAINER_ELITE_FOUR_FLINT_REMATCH
     Return
 
 _00B0:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, trainer_elite_four_flint, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_FLINT, 0, 0, 0
     Return
 
 _00BE:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, trainer_elite_four_flint_rematch, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_FLINT_REMATCH, 0, 0, 0
     Return
 
 _00CC:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

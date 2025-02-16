@@ -10,15 +10,12 @@
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0207C690.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
 #include "battle/struct_ov16_0223E0C8.h"
@@ -35,7 +32,9 @@
 #include "game_options.h"
 #include "message.h"
 #include "palette.h"
+#include "party.h"
 #include "poketch.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -66,8 +65,8 @@ struct BattleSystem {
     ChatotCry *unk_78[MAX_BATTLERS];
     UnkStruct_02007768 *unk_88;
     UnkStruct_ov12_0221FCDC *unk_8C;
-    SpriteRenderer *unk_90;
-    SpriteGfxHandler *unk_94;
+    SpriteSystem *unk_90;
+    SpriteManager *unk_94;
     Poketch *poketch;
     UnkStruct_0206D140 *unk_9C;
     u16 trainerIDs[MAX_BATTLERS];
@@ -111,7 +110,7 @@ struct BattleSystem {
     u8 unk_23FB_2 : 1;
     u8 unk_23FB_3 : 2;
     u8 unk_23FB_5 : 3;
-    enum Terrain terrain;
+    enum BattleTerrain terrain;
     int unk_2400;
     int unk_2404;
     u32 battleStatusMask;

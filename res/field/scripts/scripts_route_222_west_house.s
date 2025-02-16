@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/route_222_west_house.h"
 
     .data
 
@@ -9,7 +10,7 @@
     ScriptEntry _0081
     ScriptEntry _00A0
     ScriptEntry _00BF
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     SetFlag 0x9EF

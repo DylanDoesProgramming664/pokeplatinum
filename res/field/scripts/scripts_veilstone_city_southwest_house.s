@@ -1,11 +1,12 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/veilstone_city_southwest_house.h"
 
     .data
 
     ScriptEntry _000E
     ScriptEntry _0101
     ScriptEntry _0114
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
@@ -13,7 +14,7 @@ _000E:
     FacePlayer
     GoToIfSet 0xAAC, _00D5
     Message 0
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _00EB
     Message 1
     CloseMessage
@@ -21,7 +22,7 @@ _000E:
     WaitFadeScreen
     ScrCmd_191
     ScrCmd_193 0x4000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x4000, 0xFF, _00EB

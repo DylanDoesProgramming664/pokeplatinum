@@ -1,11 +1,12 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/oreburgh_gate_1f.h"
 
     .data
 
     ScriptEntry _000E
     ScriptEntry _0014
     ScriptEntry _007B
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     SetFlag 0x9CF

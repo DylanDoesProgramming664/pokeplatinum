@@ -3,7 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/sdat.h"
+#include "generated/genders.h"
+#include "generated/sdat.h"
 
 #include "field/field_system_decl.h"
 #include "overlay025/ov25_02254560.h"
@@ -15,7 +16,6 @@
 #include "field_system.h"
 #include "field_task.h"
 #include "game_overlay.h"
-#include "gender.h"
 #include "heap.h"
 #include "inlines.h"
 #include "save_player.h"
@@ -670,12 +670,12 @@ void PoketchSystem_PlaySoundEffect(u32 soundID)
     }
 }
 
-void ov25_02254444(u32 param0, u32 param1)
+void PoketchSystem_PlayCry(u32 species, u32 form)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
     if (poketchSys->appChanging == FALSE && ov25_0225450C(poketchSys) == 0) {
-        sub_02005844(param0, param1);
+        sub_02005844(species, form);
     }
 }
 

@@ -3,14 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/game_records.h"
+#include "generated/game_records.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -32,12 +32,12 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
 #include "unk_0204AEE8.h"
 #include "unk_0205DFC4.h"
-#include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
@@ -378,7 +378,7 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *param0, u16 param1, u16 param2)
         v5 = SaveData_GetGameRecordsPtr(param0);
 
         if (v3->unk_0F == 6) {
-            v2 = sub_0206B6FC(SaveData_GetVarsFlags(param0));
+            v2 = SystemVars_GetWiFiFrontierCleared(SaveData_GetVarsFlags(param0));
         } else {
             v2 = sub_0202D414(v3->unk_74, 8 + v3->unk_0F, 0);
         }

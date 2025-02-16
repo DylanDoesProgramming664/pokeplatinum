@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/distortion_world_b7f.h"
 
     .data
 
@@ -8,7 +9,7 @@
     ScriptEntry _006F
     ScriptEntry _0096
     ScriptEntry _01DA
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     ScrCmd_2F2
@@ -54,7 +55,7 @@ _0096:
     FacePlayer
     Message 5
     CloseMessage
-    StartTrainerBattle trainer_galactic_boss_cyrus_distortion_world
+    StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01CE
     SetVar 0x4055, 10
@@ -120,7 +121,7 @@ _01C3:
 
 _01CE:
     SetVar 0x4055, 9
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

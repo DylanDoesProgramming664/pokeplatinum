@@ -1,10 +1,11 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/iron_island_house.h"
 
     .data
 
     ScriptEntry _000A
     ScriptEntry _0035
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     GoToIfSet 0x11D, _0029
@@ -50,7 +51,7 @@ _00B2:
     ApplyMovement 0, _00F0
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 0
+    RemoveObject 0
     WaitFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_04A 0x603
     ReleaseAll
@@ -60,7 +61,7 @@ _00D0:
     ApplyMovement 0, _00FC
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 0
+    RemoveObject 0
     WaitFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_04A 0x603
     ReleaseAll

@@ -1,10 +1,11 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/route_218_gate_to_canalave_city.h"
 
     .data
 
     ScriptEntry _0208
     ScriptEntry _000A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     LockAll
@@ -33,7 +34,7 @@ _0047:
     Call _00E8
     PlayFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 0x21C
-    ScrCmd_065 1
+    RemoveObject 1
     SetVar 0x4105, 1
     ReleaseAll
     End

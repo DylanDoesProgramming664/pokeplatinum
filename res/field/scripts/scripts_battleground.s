@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/battleground.h"
 
     .data
 
@@ -10,7 +11,7 @@
     ScriptEntry _03CA
     ScriptEntry _0457
     ScriptEntry _04E4
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     SetFlag 200
@@ -114,7 +115,7 @@ _0183:
     CallIfEq 0x8005, 8, _01E9
     CallIfEq 0x8005, 9, _01FD
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 1
+    RemoveObject 1
     SetFlag 231
     SetFlag 0x1D6
     ReleaseAll
@@ -216,7 +217,7 @@ _02B4:
     GoToIfEq 0x800C, 1, _034D
     CallIfUnset 1, _036E
     CallIfSet 1, _0376
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0386
     Call _032F
     GoToIfEq 0x8000, 0, _0398
@@ -262,7 +263,7 @@ _0386:
     End
 
 _0398:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -291,7 +292,7 @@ _03CA:
     GoToIfEq 0x800C, 1, _034D
     CallIfUnset 2, _036E
     CallIfSet 2, _0376
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0445
     Call _032F
     GoToIfEq 0x8000, 0, _0398
@@ -317,7 +318,7 @@ _0457:
     GoToIfEq 0x800C, 1, _034D
     CallIfUnset 3, _036E
     CallIfSet 3, _0376
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _04D2
     Call _032F
     GoToIfEq 0x8000, 0, _0398
@@ -343,7 +344,7 @@ _04E4:
     GoToIfEq 0x800C, 1, _034D
     CallIfUnset 4, _036E
     CallIfSet 4, _0376
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _055F
     Call _032F
     GoToIfEq 0x8000, 0, _0398
@@ -396,55 +397,55 @@ _0605:
     Return
 
 _06B0:
-    SetVar 0x4005, trainer_leader_roark_rematch 
+    SetVar 0x4005, TRAINER_LEADER_ROARK_REMATCH 
     Return
 
 _06B8:
-    SetVar 0x4005, trainer_leader_gardenia_rematch
+    SetVar 0x4005, TRAINER_LEADER_GARDENIA_REMATCH
     Return
 
 _06C0:
-    SetVar 0x4005, trainer_leader_wake_rematch
+    SetVar 0x4005, TRAINER_LEADER_WAKE_REMATCH
     Return
 
 _06C8:
-    SetVar 0x4005, trainer_leader_maylene_rematch
+    SetVar 0x4005, TRAINER_LEADER_MAYLENE_REMATCH
     Return
 
 _06D0:
-    SetVar 0x4005, trainer_leader_fantina_rematch
+    SetVar 0x4005, TRAINER_LEADER_FANTINA_REMATCH
     Return
 
 _06D8:
-    SetVar 0x4005, trainer_leader_candice_rematch
+    SetVar 0x4005, TRAINER_LEADER_CANDICE_REMATCH
     Return
 
 _06E0:
-    SetVar 0x4005, trainer_leader_byron_rematch
+    SetVar 0x4005, TRAINER_LEADER_BYRON_REMATCH
     Return
 
 _06E8:
-    SetVar 0x4005, trainer_leader_volkner_rematch
+    SetVar 0x4005, TRAINER_LEADER_VOLKNER_REMATCH
     Return
 
 _06F0:
-    SetVar 0x4005, trainer_cheryl_battleground
+    SetVar 0x4005, TRAINER_CHERYL_BATTLEGROUND
     Return
 
 _06F8:
-    SetVar 0x4005, trainer_riley_battleground
+    SetVar 0x4005, TRAINER_RILEY_BATTLEGROUND
     Return
 
 _0700:
-    SetVar 0x4005, trainer_marley_battleground
+    SetVar 0x4005, TRAINER_MARLEY_BATTLEGROUND
     Return
 
 _0708:
-    SetVar 0x4005, trainer_buck_battleground
+    SetVar 0x4005, TRAINER_BUCK_BATTLEGROUND
     Return
 
 _0710:
-    SetVar 0x4005, trainer_mira_battleground
+    SetVar 0x4005, TRAINER_MIRA_BATTLEGROUND
     Return
 
 _0718:

@@ -1,11 +1,12 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/distortion_world_b2f.h"
 
     .data
 
     ScriptEntry _000E
     ScriptEntry _0012
     ScriptEntry _0084
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     ScrCmd_2F2

@@ -7,7 +7,7 @@
 
 #include "constants/communication/comm_packets.h"
 #include "constants/heap.h"
-#include "consts/game_records.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
@@ -29,7 +29,6 @@
 
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "field_system.h"
 #include "game_records.h"
 #include "heap.h"
@@ -40,6 +39,7 @@
 #include "player_avatar.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
 #include "unk_020366A0.h"
@@ -473,7 +473,7 @@ static void CommPlayer_SendMoveSpeed()
 {
     u8 moveSpeed = 2;
 
-    if (PAD_BUTTON_B & gCoreSys.heldKeys) {
+    if (PAD_BUTTON_B & gSystem.heldKeys) {
         moveSpeed = 1;
     }
 

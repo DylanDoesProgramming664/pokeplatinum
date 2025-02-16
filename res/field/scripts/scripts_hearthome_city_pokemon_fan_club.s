@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/hearthome_city_pokemon_fan_club.h"
 
     .data
 
@@ -8,7 +9,7 @@
     ScriptEntry _0174
     ScriptEntry _0193
     ScriptEntry _001A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     ScrCmd_238 4, 0x4000

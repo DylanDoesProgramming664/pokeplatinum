@@ -1,10 +1,11 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/veilstone_city_southeast_house.h"
 
     .data
 
     ScriptEntry _000A
     ScriptEntry _018C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM

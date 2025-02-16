@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/stark_mountain_room_2.h"
 
     .data
 
@@ -8,7 +9,7 @@
     ScriptEntry _021C
     ScriptEntry _022F
     ScriptEntry _001A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     GoToIfLt 0x4094, 2, _0029
@@ -32,7 +33,7 @@ _0031:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x403F, 0x263
+    SetVar VAR_PARTNER_TRAINER_ID, TRAINER_BUCK_STARK_MOUNTAIN
     SetHasPartner
     ScrCmd_06D 14, 48
     ReleaseAll
@@ -161,7 +162,7 @@ _01AB:
     WaitMovement
     WaitFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 14
+    RemoveObject 14
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x4094, 2
     ReleaseAll

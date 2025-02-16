@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/lake_verity.h"
 
     .data
 
@@ -9,7 +10,7 @@
     ScriptEntry _01D0
     ScriptEntry _0230
     ScriptEntry _030C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     CallIfSet 186, _009D
@@ -194,7 +195,7 @@ _0230:
     WaitMovement
     Message 9
     CloseMessage
-    StartTrainerBattle trainer_commander_mars_lake_verity
+    StartTrainerBattle TRAINER_COMMANDER_MARS_LAKE_VERITY
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _02DB
     Message 10
@@ -203,12 +204,12 @@ _0230:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 7
-    ScrCmd_065 8
-    ScrCmd_065 0
-    ScrCmd_065 1
-    ScrCmd_065 2
-    ScrCmd_065 3
+    RemoveObject 7
+    RemoveObject 8
+    RemoveObject 0
+    RemoveObject 1
+    RemoveObject 2
+    RemoveObject 3
     SetFlag 0x98E
     ApplyMovement 6, _02FC
     ApplyMovement 0xFF, _0304
@@ -228,7 +229,7 @@ _0230:
     End
 
 _02DB:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

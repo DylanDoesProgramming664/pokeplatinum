@@ -1,10 +1,11 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/mt_coronet_1f_north_room_1.h"
 
     .data
 
     ScriptEntry _000A
     ScriptEntry _001D
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM

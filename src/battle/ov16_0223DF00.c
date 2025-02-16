@@ -7,24 +7,19 @@
 #include "constants/game_options.h"
 #include "constants/heap.h"
 #include "constants/items.h"
-#include "consts/battle.h"
-#include "consts/game_records.h"
-#include "consts/species.h"
+#include "generated/species.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/pokemon_sprite.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_display.h"
@@ -45,7 +40,6 @@
 
 #include "bag.h"
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "enums.h"
 #include "field_battle_data_transfer.h"
 #include "flags.h"
@@ -61,6 +55,8 @@
 #include "pokemon.h"
 #include "poketch.h"
 #include "render_text.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
@@ -83,8 +79,8 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSystem);
 UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSystem);
-SpriteRenderer *ov16_0223E010(BattleSystem *battleSystem);
-SpriteGfxHandler *ov16_0223E018(BattleSystem *battleSystem);
+SpriteSystem *ov16_0223E010(BattleSystem *battleSystem);
+SpriteManager *ov16_0223E018(BattleSystem *battleSystem);
 UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSystem, int param1);
 UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSystem);
 UnkStruct_0200C440 *ov16_0223E04C(BattleSystem *battleSystem);
@@ -115,7 +111,7 @@ u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int battler);
 u8 Battler_Side(BattleSystem *battleSystem, int param1);
 void *ov16_0223E220(BattleSystem *battleSystem);
 PCBoxes *ov16_0223E228(BattleSystem *battleSystem);
-enum Terrain BattleSystem_Terrain(BattleSystem *battleSys);
+enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
 int ov16_0223E240(BattleSystem *battleSystem);
 int BattleSystem_MapHeader(BattleSystem *battleSystem);
 int BattleSystem_Partner(BattleSystem *battleSys, int battler);
@@ -125,7 +121,7 @@ u32 ov16_0223EBEC(BattleSystem *battleSystem);
 enum Time BattleSystem_Time(BattleSystem *battleSys);
 int ov16_0223EC04(BattleSystem *battleSystem);
 u8 ov16_0223EC58(BattleSystem *battleSystem, int param1, u8 param2);
-u16 ov16_0223ECC4(FieldBattleDTO *param0, int *param1, int *param2);
+u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *param0, int *param1, int *param2);
 u8 ov16_0223ED60(BattleSystem *battleSystem);
 u8 ov16_0223ED6C(BattleSystem *battleSystem);
 int BattleSystem_NumSafariBalls(BattleSystem *battleSystem);
@@ -195,7 +191,7 @@ void BattleSystem_ShowStopPlaybackButton(BattleSystem *battleSystem);
 u8 BattleSystem_RecordedChatter(BattleSystem *battleSystem, int param1);
 void ov16_0223F858(BattleSystem *battleSystem, u8 *param1);
 void ov16_0223F87C(BattleSystem *battleSystem, u8 *param1);
-void ov16_0223F8AC(BattleSystem *battleSystem, Sprite **param1);
+void ov16_0223F8AC(BattleSystem *battleSystem, PokemonSprite **param1);
 void BattleSystem_SetGaugePriority(BattleSystem *battleSystem, int param1);
 u32 BattleSystem_CalcMoneyPenalty(Party *party, TrainerInfo *trainerInfo);
 void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1);
@@ -303,12 +299,12 @@ UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSystem)
     return battleSystem->unk_8C;
 }
 
-SpriteRenderer *ov16_0223E010(BattleSystem *battleSystem)
+SpriteSystem *ov16_0223E010(BattleSystem *battleSystem)
 {
     return battleSystem->unk_90;
 }
 
-SpriteGfxHandler *ov16_0223E018(BattleSystem *battleSystem)
+SpriteManager *ov16_0223E018(BattleSystem *battleSystem)
 {
     return battleSystem->unk_94;
 }
@@ -506,7 +502,7 @@ PCBoxes *ov16_0223E228(BattleSystem *battleSystem)
     return battleSystem->pcBoxes;
 }
 
-enum Terrain BattleSystem_Terrain(BattleSystem *battleSys)
+enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys)
 {
     if (battleSys->terrain > TERRAIN_MAX || battleSys->terrain < TERRAIN_PLAIN) {
         return TERRAIN_MAX;
@@ -957,35 +953,35 @@ u8 ov16_0223EC58(BattleSystem *battleSystem, int param1, u8 param2)
     return 0;
 }
 
-u16 ov16_0223ECC4(FieldBattleDTO *param0, int *param1, int *param2)
+u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *dto, int *outPartySlot, int *outEvoType)
 {
-    Pokemon *v0;
-    u16 v1;
+    Pokemon *mon;
+    u16 species = SPECIES_NONE;
 
-    v1 = 0;
-
-    if ((param0->resultMask != BATTLE_RESULT_WIN) && (param0->resultMask != BATTLE_RESULT_CAPTURED_MON) && (param0->resultMask != BATTLE_RESULT_PLAYER_FLED)) {
-        return 0;
+    if (dto->resultMask != BATTLE_RESULT_WIN
+        && dto->resultMask != BATTLE_RESULT_CAPTURED_MON
+        && dto->resultMask != BATTLE_RESULT_PLAYER_FLED) {
+        return SPECIES_NONE;
     }
 
-    while (param0->leveledUpMonsMask) {
-        for (param1[0] = 0; param1[0] < 6; param1[0]++) {
-            if (param0->leveledUpMonsMask & FlagIndex(param1[0])) {
-                param0->leveledUpMonsMask &= (FlagIndex(param1[0]) ^ 0xffffffff);
+    while (dto->leveledUpMonsMask) {
+        for (*outPartySlot = 0; *outPartySlot < 6; (*outPartySlot)++) {
+            if (dto->leveledUpMonsMask & FlagIndex(*outPartySlot)) {
+                dto->leveledUpMonsMask &= (FlagIndex(*outPartySlot) ^ 0xFFFFFFFF);
                 break;
             }
         }
 
-        if (param1[0] < 6) {
-            v0 = Party_GetPokemonBySlotIndex(param0->parties[0], param1[0]);
-
-            if ((v1 = sub_02076B94(param0->parties[0], v0, 0, param0->mapEvolutionMethod, param2))) {
-                return v1;
+        if (*outPartySlot < 6) {
+            mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLE_SIDE_PLAYER], *outPartySlot);
+            species = Pokemon_GetEvolutionTargetSpecies(dto->parties[BATTLE_SIDE_PLAYER], mon, EVO_CLASS_BY_LEVEL, dto->mapEvolutionMethod, outEvoType);
+            if (species) {
+                return species;
             }
         }
     }
 
-    return v1;
+    return species;
 }
 
 u8 ov16_0223ED60(BattleSystem *battleSystem)
@@ -1138,7 +1134,7 @@ void ov16_0223EF8C(BattleSystem *battleSystem)
     MI_CpuCopy32(PaletteData_GetUnfadedBuffer(battleSystem->unk_28, 0), battleSystem->unk_220, HW_BG_PLTT_SIZE);
 
     v7 = G2_GetOBJCharPtr();
-    v0 = SpriteActor_ImageProxy(battleSystem->unk_17C[1].unk_00->unk_00);
+    v0 = Sprite_GetImageProxy(battleSystem->unk_17C[1].unk_00->sprite);
     v7 += v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
     for (v2 = 20; v2 < 20 + 8; v2++) {
@@ -1169,7 +1165,7 @@ void ov16_0223EF8C(BattleSystem *battleSystem)
     }
 
     v7 = G2_GetOBJCharPtr();
-    v0 = SpriteActor_ImageProxy(battleSystem->unk_17C[0].unk_00->unk_00);
+    v0 = Sprite_GetImageProxy(battleSystem->unk_17C[0].unk_00->sprite);
     v7 += v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
     for (v6 = 0; v6 < 0x40 * 32; v6++) {
@@ -1552,7 +1548,7 @@ int ov16_0223F6F0(BattleSystem *battleSystem, u16 param1)
 
 u16 BattleSystem_TrainerItems(BattleSystem *battleSystem, int param1, int param2)
 {
-    return battleSystem->trainers[param1].items[param2];
+    return battleSystem->trainers[param1].header.items[param2];
 }
 
 u32 BattleSystem_RecordingStopped(BattleSystem *battleSystem)
@@ -1629,7 +1625,7 @@ void ov16_0223F87C(BattleSystem *battleSystem, u8 *param1)
     }
 }
 
-void ov16_0223F8AC(BattleSystem *battleSystem, Sprite **param1)
+void ov16_0223F8AC(BattleSystem *battleSystem, PokemonSprite **param1)
 {
     int v0;
 

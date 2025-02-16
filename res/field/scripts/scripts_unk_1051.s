@@ -1,9 +1,10 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/unk_0552.h"
 
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
@@ -144,7 +145,7 @@ _029F:
     End
 
 _02B1:
-    ScrCmd_065 4
+    RemoveObject 4
     ClearFlag 0x188
     SetVar 0x4087, 2
     ReleaseAll
@@ -200,7 +201,7 @@ _03A1:
 
 _03A9:
     Message 10
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _03CC
     GoToIfEq 0x800C, 1, _03D1
     End
@@ -215,7 +216,7 @@ _03D1:
 
 _03D6:
     Message 24
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _03F9
     GoToIfEq 0x800C, 1, _03FE
     End

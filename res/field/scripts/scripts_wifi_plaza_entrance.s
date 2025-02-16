@@ -1,9 +1,10 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/wifi_plaza_entrance.h"
 
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     LockAll
@@ -69,7 +70,7 @@ _00D9:
     ScrCmd_0B3 0x800C
     SetVar 0x8004, 0x800C
     ScrCmd_2F7 0x8004
-    ScrCmd_0A1
+    ReturnToField
     SetVar 0x4080, 1
     ScrCmd_1B2 0xFF
     FadeScreen 6, 1, 1, 0

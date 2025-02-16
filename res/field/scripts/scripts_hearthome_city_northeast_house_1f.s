@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/hearthome_city_northeast_house_1f.h"
 
     .data
 
@@ -11,7 +12,7 @@
     ScriptEntry _0096
     ScriptEntry _00A9
     ScriptEntry _00BC
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0026:
     PlayFanfare SEQ_SE_CONFIRM

@@ -1,11 +1,12 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/twinleaf_town_rival_house_2f.h"
 
     .data
 
     ScriptEntry _000E
     ScriptEntry _0090
     ScriptEntry _00A1
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     LockAll
@@ -22,7 +23,7 @@ _000E:
     ApplyMovement 0xFF, _0080
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 0
+    RemoveObject 0
     CallCommonScript 0x7FB
     SetFlag 234
     SetVar 0x40A3, 1

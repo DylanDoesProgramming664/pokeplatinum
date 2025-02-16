@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/valor_cavern.h"
 
     .data
 
@@ -6,7 +7,7 @@
     ScriptEntry _0042
     ScriptEntry _0077
     ScriptEntry _00D3
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     SetFlag 0x9E1
@@ -31,7 +32,7 @@ _0042:
 
 _0069:
     SetFlag 0x1E0
-    ScrCmd_065 0
+    RemoveObject 0
     ClearFlag 142
     Return
 
@@ -61,7 +62,7 @@ _00C2:
     End
 
 _00CD:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -76,14 +77,14 @@ _00D3:
     WaitTime 30, 0x800C
     Message 1
     CloseMessage
-    StartTrainerBattle trainer_commander_saturn_valor_cavern
+    StartTrainerBattle TRAINER_COMMANDER_SATURN_VALOR_CAVERN
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0144
     Message 2
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 1
+    RemoveObject 1
     SetFlag 0x13E
     SetFlag 0x984
     FadeScreen 6, 1, 1, 0
@@ -97,7 +98,7 @@ _013C:
     EndMovement
 
 _0144:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

@@ -1,10 +1,11 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/route_213_gate_to_pastoria_city.h"
 
     .data
 
     ScriptEntry _000A
     ScriptEntry _001D
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -21,7 +22,7 @@ _001D:
     LockAll
     FacePlayer
     Message 1
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0044
     Message 2
     GoTo _004F

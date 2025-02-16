@@ -1,18 +1,13 @@
 #include "map_header.h"
 
-#include <nitro.h>
-#include <string.h>
-
-#include "consts/map.h"
-#include "consts/pokemon.h"
+#include "generated/map_headers.h"
 
 #include "data/map_headers.h"
-#include "global/pm_version.h"
 
 u32 MapHeader_IDBoundsCheck(u32 headerID)
 {
     if (headerID >= NELEMS(sMapHeaders)) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return 3;
     }
 
@@ -33,10 +28,8 @@ const u16 sub_0203A04C(u32 headerID)
 
 const u16 MapHeader_GetMapMatrixID(u32 headerID)
 {
-    u16 mapMatrixID;
-
     headerID = MapHeader_IDBoundsCheck(headerID);
-    mapMatrixID = sMapHeaders[headerID].mapMatrixID;
+    u16 mapMatrixID = sMapHeaders[headerID].mapMatrixID;
 
     if (mapMatrixID == 22 && gGameVersion == PEARL) {
         mapMatrixID = 23;
@@ -252,55 +245,54 @@ BOOL MapHeader_IsPokemonCenter2F(const u32 headerID)
     return FALSE;
 }
 
-enum PokemonEvoMethod MapHeader_GetMapEvolutionMethod(u32 headerID)
+enum EvolutionMethod MapHeader_GetMapEvolutionMethod(u32 headerID)
 {
     static const u16 mapEvolutionMethods[] = {
         MAP_HEADER_ROUTE_217,
-        EVO_ICY_STONE,
+        EVO_LEVEL_ICE_ROCK,
         MAP_HEADER_ETERNA_FOREST,
-        EVO_MOSSY_STONE,
+        EVO_LEVEL_MOSS_ROCK,
         MAP_HEADER_MT_CORONET_1F_SOUTH,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_MT_CORONET_2F,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_MT_CORONET_3F,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_MT_CORONET_OUTSIDE_NORTH,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_MT_CORONET_4F_ROOM_3,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_MT_CORONET_5F,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_MT_CORONET_6F,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_2,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_MT_CORONET_B1F,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_SPEAR_PILLAR,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_SPEAR_PILLAR_DISTORTED,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_HALL_OF_ORIGIN,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_UNKNOWN_511,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_SPEAR_PILLAR_DIALGA,
-        EVO_ELECTRIC_FIELD,
+        EVO_LEVEL_MAGNETIC_FIELD,
         MAP_HEADER_SPEAR_PILLAR_PALKIA,
-        EVO_ELECTRIC_FIELD
+        EVO_LEVEL_MAGNETIC_FIELD
     };
-    int i;
 
-    for (i = 0; i < NELEMS(mapEvolutionMethods); i += 2) {
+    for (int i = 0; i < NELEMS(mapEvolutionMethods); i += 2) {
         if (mapEvolutionMethods[i] == headerID) {
             return mapEvolutionMethods[i + 1];
         }
